@@ -1,98 +1,42 @@
-import java.util.ArrayList;
-import java.util.List;
-
-// Abstract class representing an Employee
-abstract class Employee {
-    protected String name;
-
-    public Employee(String name) {
-        this.name = name;
-    }
-
-    public abstract double calculateSalary();
-
-    public abstract void displayDetails();
-}
-
-// Full-time employee class
-class FullTimeEmployee extends Employee {
-    private double baseSalary;
-
-    public FullTimeEmployee(String name, double baseSalary) {
-        super(name);
-        this.baseSalary = baseSalary;
-    }
-
-    @Override
-    public double calculateSalary() {
-        return baseSalary; // Fixed salary for full-time employees
-    }
-
-    @Override
-    public void displayDetails() {
-        System.out.println("Full-Time Employee: " + name);
-        System.out.printf("Salary: $%.2f%n", calculateSalary());
-    }
-}
-
-// Part-time employee class
-class PartTimeEmployee extends Employee {
-    private double hourlyWage;
-    private int hoursWorked;
-
-    public PartTimeEmployee(String name, double hourlyWage, int hoursWorked) {
-        super(name);
-        this.hourlyWage = hourlyWage;
-        this.hoursWorked = hoursWorked;
-    }
-
-    @Override
-    public double calculateSalary() {
-        return hourlyWage * hoursWorked; // Salary for part-time employees
-    }
-
-    @Override
-    public void displayDetails() {
-        System.out.println("Part-Time Employee: " + name);
-        System.out.printf("Salary: $%.2f%n", calculateSalary());
-    }
-}
-
-// Employee management system class
-class EmployeeManagementSystem {
-    private List<Employee> employees;
-
-    public EmployeeManagementSystem() {
-        employees = new ArrayList<>();
-    }
-
-    public void addEmployee(Employee employee) {
-        employees.add(employee);
-    }
-
-    public void displayAllEmployees() {
-        for (Employee employee : employees) {
-            employee.displayDetails();
-            System.out.println("------------------------------");
-        }
-    }
-}
-
-// Main class to run the program
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        // Create an instance of the EmployeeManagementSystem
-        EmployeeManagementSystem ems = new EmployeeManagementSystem();
+        person object1 = new person();
+        person object2 = new person();
+        object1.accept();
+        object1.display();
+        object2.accept();
+        object2.display();
+    }
+}
+    class person{
+        Scanner sc = new Scanner(System.in);
+        String name;
+        int basic;
+        double hra, ta, tax, total, gross;
+        int age;
 
-        // Create employees
-        FullTimeEmployee fullTimeEmp = new FullTimeEmployee("Alice", 60000);
-        PartTimeEmployee partTimeEmp = new PartTimeEmployee("Bob", 20, 100);
+        void accept() {
+            System.out.println("Enter the name of the person:");
+            name = sc.next();
+            System.out.println("Enter the age of the person:");
+            age = sc.nextInt();
+            System.out.println("Enter the basic salary:");
+            basic = sc.nextInt();
+            hra = (0.05 * basic);
+            ta = 0.1 * basic;
+            total = basic + hra + ta;
+            tax = 0.02 * total;
+            gross = total - tax;
+        }
 
-        // Add employees to the system
-        ems.addEmployee(fullTimeEmp);
-        ems.addEmployee(partTimeEmp);
 
-        // Display all employees
-        ems.displayAllEmployees();
+    void display() {
+        System.out.println("The name and age of the person are:" +name +age);
+        System.out.println("The basic salary of the person is:" +basic);
+        System.out.println("The hra is:" +hra);
+        System.out.println("the da is:" +ta);
+        System.out.println("The tax is:" +tax);
+        System.out.println("The total salary of the person after tax and hra,ta:" +gross);
     }
 }
