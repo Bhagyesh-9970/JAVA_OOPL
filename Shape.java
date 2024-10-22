@@ -1,30 +1,31 @@
-public class Shape {
-    public void draw() {
-        System.out.println("Draw shape");
+import java.util.Scanner;
+
+public class shape {
+    public double area(int r){
+        return 3.14*r*r;
     }
-
-    public static class Circle extends Shape {
-        @Override
-        public void draw() {
-            System.out.println("Draw a circle");
-        }
-
-        public void draw(int radius) {
-            System.out.println("Draw circle with radius: " + radius);
-        }
-
-        public void draw(int radius, int diameter) {
-            System.out.println("Draw circle with radius: " + radius + " and diameter: " + diameter);
-        }
+    public int area(int l,int w){
+        return (l*w);
     }
-
-    public static void main(String[] args) {
-        Shape shape = new Shape();
-        shape.draw();
-
-        Circle circle = new Circle();
-        circle.draw();
-        circle.draw(5);
-        circle.draw(5, 10);
+    public double area(double s){
+        return (s*s);
+    }
+    public double peri(double s){
+        return 4*s;
+    }
+    public int peri(int l,int w){
+        return (2*l)+(2*w);
+    }
+    public double peri(int s1,int s2,int s3){
+        return s1+s2+s3;
+    }
+    public static void main(String[]args){
+        shape s1= new shape();
+        System.out.println("The area of Square is:"+s1.area(9.8));
+        System.out.println("The area of circle is:"+s1.area(8));
+        System.out.println("The area of Rectangle is:"+s1.area(4, 8));
+        System.out.println("The Perimeter of Rectangle is:"+s1.peri(4, 8));
+        System.out.println("The Perimeter of Square is:"+s1.peri(9.8));
+        System.out.println("The Perimeter of Triangle is:"+s1.peri(2,3,4));
     }
 }
